@@ -17,7 +17,7 @@
 % ================================================ %
 \usepackage{framed} 		% Framing content
 \usepackage{multicol} 	% Multiple columns environment
-\usepackage{nomencl} 	% Nomenclature package 
+\usepackage{nomencl} 	% Nomenclature package
 \makenomenclature
 
 % For 2-columns
@@ -105,11 +105,11 @@
 \begin{frontmatter}
 	\title{On the inverse problem for two-component unsteady wall shear rate measurements: Application to the electrodiffusion method}
 	
-	\author[label1]{Marc-\'Etienne Lamarche-Gagnon\corref{cor1}}
+	\author[label1]{M.-{\'E}. Lamarche-Gagnon\corref{cor1}}
 	\cortext[cor1]{Corresponding author}
 	\ead{m-e.lamarche-gagnon@polymtl.ca}
 	
-	\author[label1]{J\'er\^ome V\'etel}
+	\author[label1]{J. V\'etel}
 	
 	\address[label1]{Department of Mechanical Engineering, \LADYF, Polytechnique Montreal, Montreal, Qc, H3T 1J4, Canada}
 	
@@ -175,7 +175,7 @@
 \nomenclature[S]{sob}{\sob method}
 \nomenclature[S]{q}{quasi-steady method}
 %\nomenclature[S]{$i$}{Time step number}
-\nomenclature[S]{$n$}{relative to unknown $n$}
+\nomenclature[S]{$n$}{relative to $S$ ($n=0$) or $\alpha$ ($n=1$)}
 \nomenclature[S]{$m$}{segment $m$ of a three-segment probe}
 %\nomenclature[S]{std}{Relative to steady-state conditions}
 
@@ -189,7 +189,7 @@
 % ============================= MAIN TEXT ================================ %
 % ======================================================================== %
 \section{Introduction}\label{sec:introduction}
-Every wall confined flow is subject to wall shear stress, affecting the efficiency of many industrial systems such as pumps, turbines, heat exchangers or any application implying fluid circulation. Despite the considerable efforts in developing new methods over the years, measurement of wall shear stress remains a challenge, especially when both time and space resolution are required. Among the many available methods, the floating element is interesting due to the probe size and considerably large bandwidth \citep[sometimes up to 4\,kHz, see][]{padmanabhan1997}. However, spatial resolution of the floating element is generally limited by the overall electronic components surrounding the probe and those sensors can rarely measure at the same time the shear stress direction. The hot-film anemometer has also been widely used to assess wall shear rate in unsteady flows. On paper, hot-film frequency response stays flat up to a few kHz \citep{wietrzak1994wall}, but this value is largely weakened considering heat conduction through the wall, which also introduces a bias error. Regardless of the many adaptations developed over the last few decades (among other things: reduction of the substrate thermal conductivity, creation of a vacuum cavity below the sensor), this problem persists and accurate measurements under unsteady conditions are still an issue \citep{sheplak2004mems}. Natural convection caused by heat transfer to the fluid, known as the induced buoyancy, can also locally alter the flow conditions. \citet{he2011wall} attributed the large dispersions in their calibration data to this phenomenon, observing discrepancies as high as 10\,\% (turbulent pipe flow with $\Rey<18\,000$). Although flow direction can be assessed by arranging two or more hot-film sensors with different orientations, the poor probe sensitivity in the transverse direction limits its uses to small angles; such sensor configuration is usually reserved for detecting shear reversal rather than its direction \citep{bruun1995hot}.
+Every wall confined flow is subject to wall shear stress, affecting the efficiency of many industrial systems such as pumps, turbines, heat exchangers or any application implying fluid circulation. Despite the considerable efforts in developing new methods over the years, measurement of wall shear stress remains a challenge, especially when both time and space resolution are required. Among the many available methods, the floating element is interesting due to the probe size and considerably large bandwidth \citep[sometimes up to 4\,kHz, see][]{padmanabhan1997}. However, spatial resolution of the floating element is generally limited by the overall electronic components surrounding the probe and those sensors can rarely measure at the same time the shear stress direction. The hot-film anemometer has also been widely used to assess wall shear rate in unsteady flows. On paper, hot-film frequency response stays flat up to a few kHz \citep{wietrzak1994wall}, but this value is largely weakened considering heat conduction through the wall, which also introduces a bias error. Regardless of the many adaptations developed over the last few decades (among other things: reduction of the substrate thermal conductivity, creation of a vacuum cavity below the sensor), this problem persists and accurate measurements under unsteady conditions are still an issue \citep{sheplak2004mems}. Natural convection caused by the probe heating, known as the induced buoyancy, can also locally alter the flow conditions. \citet{he2011wall} attributed the large dispersions in their calibration data to this phenomenon, observing discrepancies as high as $\pm10$\,\% (turbulent pipe flow with $\Rey<18\,000$). Although flow direction can be assessed by arranging two or more hot-film sensors with different orientations, the poor probe sensitivity in the transverse direction limits its uses to small angles; such sensor configuration is usually reserved for detecting shear reversal rather than its direction \citep{bruun1995hot}.
 
 The electrodiffusion (ED) method measures the electrolysis reaction rate between an electrode flush-mounted to a wall and a redox couple contained in the flow. The method is in many ways similar to the hot-film anemometry, where the local \textit{mass} transfer is measured instead of the heat transfer; the theory behind the two techniques overlaps in several aspects. Still, one major asset of the ED is the lack of heat loss to the wall, especially profitable in low convection flows. In their review of the wall shear stress produced by an impinging jet, \citet{phares2000wall} indeed concluded that the ED method provided `the most accurate data close to the stagnation point', as the ones from hot-film probes suffered from strong discrepancies. While the cutoff frequency associated with ED probes is rather low, adequate post-processing can correct the attenuation and phase shift of the sensor response in highly unsteady flows. In particular, by considering that the reaction at the probe interface is governed by the convection--diffusion equation, one can take advantage of the so-called \textit{inverse problem} to deal with the probe inertia. With this approach, the input wall shear rate is iteratively adjusted by solving the \textit{direct problem} (i.e. the convection--diffusion equation) until the numerical data converge to the experimental ones. According to \citet{rehimi2006inverse}, such method allows to accurately correct the probe response in high amplitude unsteady flows, including the case of shear reversal. The authors have demonstrated that this method outmatches every other post-treatments in two-dimensional flows. Considering its success, we propose an enhancement of the method adapted to three-dimensional flows able to capture the wall shear rate magnitude along with its direction in any unsteady flow when using a three-segment probe. The method is validated numerically for flows subjected to periodic and stochastic variations of the wall shear rate.
 
@@ -203,7 +203,7 @@ The electrodiffusion (ED) method measures the electrolysis reaction rate between
 
 
 \subsection{Basic principles of the electrodiffusion method}
-The ED method relies on the mass transfer between a redox couple ($O$--$R$) contained in a solution and two electrodes flush mounted to a wall (Fig.~\ref{fig:1}). The reaction is initiated by imposing a constant voltage between the anode and the cathode, where a concentration gradient gradually builds up at the electrodes--solution interface. The current $I$ flowing through the electrodes and electrolyte is then a function of the solution supply and is directly related to the wall shear rate $s$ under steady conditions. When streamwise convection is dominant, the relation $s\propto I^3$ typically holds over a certain voltage range, namely when the \textit{limiting current} condition is achieved \citep{hanr1996meas}; the electrode process then occurs at the maximal rate possible and the concentration at the probe surface is essentially null ($c_{y=0}=0$). Under this electrolysis process, mass transfer is manifested by an exchange of electrical charges between the $O$--$R$ species. While this transfer is normally assured by three methods (migration, diffusion and convection), a non-reactive or background electrolyte is usually added in excess to the solution so as to limit migration effects. The divergence of the resulting Nernst--Planck equation, which dictates the mass transfer at an electrode, results in the general convection--diffusion equation in absence of migration:
+The ED method measures the electric current $I$ between the working electrode (probe) and a large counter electrode (Fig.~\ref{fig:1}). This current depends on convective and molecular transfer of active species ($O$--$R$) contained in the fluid, which are consumed by a fast electrochemical reaction. This process is initiated by imposing a constant voltage between the anode and the cathode, where a concentration gradient gradually builds up at the electrodes--solution interface. The current flowing through the electrodes and electrolyte is then a function of the solution supply and is directly related to the wall shear rate $s$ under steady conditions. When streamwise convection is dominant, the relation $s\propto I^3$ typically holds over a certain voltage range, namely when the \textit{limiting current} condition is achieved \citep{hanr1996meas}; the reaction then occurs at the maximal rate possible and the concentration at the probe surface is essentially null ($c_{y=0}=0$). During this process, mass transfer is manifested by an exchange of electrical charges between the $O$--$R$ species. While this transfer is normally assured by three methods (migration, diffusion and convection), a non-reactive or background electrolyte is usually added in excess to the solution so as to limit migration effects. The divergence of the resulting Nernst--Planck equation, which dictates the mass transfer at an electrode, results in the general convection--diffusion equation in absence of migration:
 \begin{equation}
 \pd{c}{t} + \vec{u}\cdot\nabla c = D\nabla^2 c,
 \label{eq:CD}
@@ -215,7 +215,7 @@ J_{y=0} = \frac{I}{nFA} = -\frac{1}{A}\iint_{A}D\left.\pd{c}{y}\right|_{y=0}dA,
 \end{equation}
 with $n$, $F$, $A$ the number of electron(s) involved in the reaction, the Faraday number and the probe area, respectively. The reaction is then said to be diffusion-controlled.
 
-The fundamental principle behind the ED method is that the reaction occurs very close to the wall owing to the thinness of the  concentration boundary layer (also called \textit{diffusion layer}) compared to the hydrodynamic one, so as to assume a linear velocity profile in the vicinity of the probe, $\vec{u}=\vec{s}y$, with $\vec{s}$ the two-dimensional wall shear rate. This is expected when the Schmidt number $\Sc=\nu/D$ is large\footnote{A typical value encountered is $\Sc\sim1000$.}, where $\nu$ is the kinematic viscosity. While two electrodes are needed for the process to occur, only the half-reaction arising at the working electrode will be of interest. The cathode is generally chosen as the working electrode, which will be referred to as the probe throughout the rest of the paper.
+The fundamental principle behind the ED method is that the reaction occurs very close to the wall owing to the thinness of the  concentration boundary layer (also called \textit{diffusion layer}) compared to the hydrodynamic one, so as to assume a linear velocity profile in the vicinity of the probe, $\vec{u}=\vec{s}y$, with $\vec{s}$ the two-dimensional wall shear rate. This is expected when the Schmidt number $\Sc=\nu/D$ is large\footnote{A typical value encountered is $\Sc\sim1000$.}, where $\nu$ is the kinematic viscosity. While two electrodes are needed for the process to occur, only the half-reaction arising at the working electrode is here relevant. Still, to eliminate the effect of the counter electrode on the measured current, this electrode must be much larger than the probe. Since the cathode is generally chosen as the working electrode, it will hereby be referred to as the probe.
 
 
 \subsection{Common post-treatment methods}
@@ -242,7 +242,7 @@ In this work, the inverse method is revisited. Taking advantage of the three-seg
 \begin{figure*}
 	\centering
 	\includegraphics{fig2}
-	\caption{(a) Geometry and (b) boundary conditions used for the direct and the inverse problems. An overall diameter $D=50d$ and height $H=10d$ ensured that boundary conditions would not interfere with the probe reaction, even in cases of flow reversal. The inlet/outlet switches between Dirichlet ($C=1$) and Neumann ($\partial C/\partial n=0$) conditions depending on the flow direction $\alpha$. (c) Discretized null-gap three-segment probe (mesh G0 in Section \ref{sec:probdis}). Usage of small triangles near the probe edges are twofold: they help to manage the local strong concentration gradients, but they also serve for numerical stabilization of the problem without the need for a stabilization scheme. (d) Cut view in the $x-z$ plane of a typical mesh used. The three-segment probe is surrounded by the smallest elements.}
+	\caption{(a) Geometry and (b) boundary conditions used in the direct and the inverse problems. An overall diameter $D=50d$ and height $H=10d$ ensured that boundary conditions would not interfere with the probe reaction, even in cases of flow reversal. The inlet/outlet switches between Dirichlet ($C=1$) and Neumann ($\partial C/\partial n=0$) conditions depending on the flow direction $\alpha$. (c) Discretized null-gap three-segment probe (mesh G0 in Section \ref{sec:probdis}). Usage of small triangles near the probe edges are twofold: they help to manage the local strong concentration gradients, but they also serve for numerical stabilization of the problem without the need for a stabilization scheme. (d) Cut view in the $x-z$ plane of a typical mesh used. The three-segment probe is surrounded by the smallest elements.}
 	\label{fig:2}
 \end{figure*}
 The three-dimensional convection--diffusion equation with a parallel linear velocity profile $\vec{u}=\vec{s}y$ is considered. In the presence of periodic flow fluctuations characterized by a frequency $f$, the dimensionless form of \eqref{eq:CD} can be written as
@@ -336,7 +336,7 @@ Such a procedure is in many ways more appealing than the finite difference one c
 
 The following iterative procedure is then proposed, given the starting guesses $\vec{p}^{(0)}$ from, for instance, the quasi-steady solutions. For each time step $i<T$,
 \begin{enumerate}[(i)]
-	\item solve the direct problem (cf. Section~\ref{sec:dirprob}) for time $\tau_i$ using $S=p_0^{j}$ and $\alpha=p_1^{j}$ and compute $f$;
+	\item solve the direct problem (cf. Section~\ref{sec:dirprob}) for time $\tau_i$ using $S=p_0^{(j)}$ and $\alpha=p_1^{(j)}$ and compute $f$;
 	\item if $f<\texttt{tol}$, return to (i) for time $\tau_{i+1}$; otherwise
 	\item solve the sensitivity equations \eqref{eq:C1C2} and compute $\mat{J}$.
 	\item evaluate the new guesses $\vec{p}^{(j+1)}$ with \eqref{eq:GN} and return to (i) for iteration $j+1$.
@@ -356,7 +356,7 @@ with $k^*=0.86505$, which value is expected when the tangential and transverse d
 
 
 \subsection{Validation of the inverse problem \label{sec:valinv}}
-The use of the null-gap three-segment probe only being theoretical, a sensor with small gaps (see Fig.~\ref{fig:9}a) is used in the following section. Nevertheless, the use of the null-gap geometry in the previous section was necessary for validation purposes, considering that the \lev solution is not valid with an imperfect disk. Note that the mesh generation procedure was the same for all geometries. 
+The use of the null-gap three-segment probe only being theoretical, a sensor with small gaps (see Fig.~\ref{fig:9}a) is used in the following section. Nevertheless, the use of the null-gap geometry in the previous section was necessary for validation purposes, considering that the \lev solution with $k^*=0.86505$ is valid for a perfect disk. Note that the mesh generation procedure was the same for all geometries. 
 
 Validation of the inverse algorithm was accomplished by first simulating data using the direct problem for various flow parameters and then applying the inverse procedure of Section~\ref{sec:invpro}. Test cases are here based on the periodic fluctuation of both $S$ and $\alpha$, as per the following equations:
 \begin{subequations}
@@ -456,7 +456,7 @@ When treating experimental data from a real three-segment sensor, one could use 
 \begin{figure*}[th!]
 	\centering
 	\includegraphics[]{fig11}
-	\caption{Two-component wall shear rate extracted from a DNS database of a turbulent Poiseuille flow at $\Rey=1\e{4}$ (colored curves). Results of the inverse method for the high $\Pen$ case are illustrated with thin black lines for both $S$ and $\alpha$. A close-up of the dashed rectangle region is presented in Figs.~\ref{fig:12} and \ref{fig:13}. Values for the dimensionless time $\tau=t^*\ol{s^*}\Pen^{-1/3}$ on the top and bottom abscissae concern the low and high $\Pen$ cases, respectively.}
+	\caption{Two-component wall shear rate extracted from a DNS database of a turbulent Poiseuille flow at $\Rey=10^4$ (colored curves). Results of the inverse method for the high $\Pen$ case are illustrated with thin black lines for both $S$ and $\alpha$. A close-up of the dashed rectangle region is presented in Figs.~\ref{fig:12} and \ref{fig:13}. Values for the dimensionless time $\tau=t^*\ol{s^*}\Pen^{-1/3}$ on the top and bottom abscissae concern the low and high $\Pen$ cases, respectively.}
 	\label{fig:11}
 \end{figure*}
 
@@ -494,7 +494,7 @@ or, using the dimensionless DNS variables (here represented with starred coeffic
 	\tau = t^*\ol{s^*}\Pen^{-1/3}.
 	\label{eq:tauInst0}
 \end{equation}
-With such a parameter, a unitary coefficient then replaces the Strouhal number in front of the time derivative of equations \eqref{eq:cdadim3D} and \eqref{eq:C1C2} (equivalent to $\Sr=1$). $s^*$ was evaluated using finite difference approximation in the viscous sub-layer where a linear velocity profile was observed. Averaging was performed over the entire period shown in Fig.~\ref{fig:11} to evaluate $\ol{s^*}$. One can notice from \eqref{eq:tauInst0} that a higher $\Pen$ will decrease the resulting time step $\Delta\tau$ for the ED analysis, thus creating a more intense case for the inverse method considering its convergence properties are lessened with smaller time steps \citep{ozisik2000inverse}. Two values for the P\'eclet number were tested, namely $\Pen=1.2\e{7}$ and $\Pen=1.2\e{5}$, which respectively correspond to mean wall shear rates of \SI{36000}{\per\second} and \SI{360}{\per\second} provided that the typical values $d=0.5\,$mm and $D=7.5\e{-4}$\,$\si{\milli\meter\squared\per\second}$ are used \citep{sobolik1998calibration}. The Reynolds number $\Rey=Uh/\nu$ used in the DNS was $\Rey=1\e{4}$, with $U$, $h$ the average cross-sectional velocity and the channel height, respectively. 
+With such a parameter, a unitary coefficient then replaces the Strouhal number in front of the time derivative of equations \eqref{eq:cdadim3D} and \eqref{eq:C1C2} (equivalent to $\Sr=1$). $s^*$ was evaluated using finite difference approximation in the viscous sub-layer where a linear velocity profile was observed. Averaging was performed over the entire period shown in Fig.~\ref{fig:11} to evaluate $\ol{s^*}$. One can notice from \eqref{eq:tauInst0} that a higher $\Pen$ will decrease the resulting time step $\Delta\tau$ for the ED analysis, thus creating a more intense case for the inverse method considering its convergence properties are lessened with smaller time steps \citep{ozisik2000inverse}. Two values for the P\'eclet number were tested, namely $\Pen=1.2\e{7}$ and $\Pen=1.2\e{5}$, which respectively correspond to mean wall shear rates of \SI{36000}{\per\second} and \SI{360}{\per\second} provided that the typical values $d=0.5\,$mm and $D=7.5\e{-4}$\,$\si{\milli\meter\squared\per\second}$ are used \citep{sobolik1998calibration}. The Reynolds number $\Rey=Uh/\nu$ used in the DNS was $\Rey=10^4$, with $U$, $h$ the average cross-sectional velocity and the channel height, respectively. 
 
 %The mean wall shear rate to be used in \eqref{eq:adim} and \eqref{eq:tauInst} can be related to the DNS parameter through
 %\begin{equation}
@@ -515,270 +515,7 @@ An inverse problem algorithm coupled with the three-dimensional convection--diff
 The authors would like to acknowledge the financial support of the Natural Sciences and Engineering Research Council of Canada (NSERC) and the Fonds de recherche du Qu\'ebec - Nature et technologies (FRQNT). A most grateful thanks to Prof. V. Sobol\'ik, LaSIE Universit\'e de La Rochelle, for valuable advice and teaching of the electrodiffusion method and to Prof. A. Garon, Polytechnique Montreal, for the many recommendations regarding the finite element method. 
 
 \section*{References}
-\begin{thebibliography}{36}
-	\providecommand{\natexlab}[1]{#1}
-	\providecommand{\url}[1]{\texttt{#1}}
-	\providecommand{\urlprefix}{URL }
-	\expandafter\ifx\csname urlstyle\endcsname\relax
-	\providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
-	\providecommand{\doi}[1]{doi:\discretionary{}{}{}\begingroup
-		\urlstyle{rm}\url{#1}\endgroup}\fi
-	\providecommand{\bibinfo}[2]{#2}
-	
-	\bibitem[{Padmanabhan et~al.(1997)Padmanabhan, Sheplak, Breuer, and
-		Schmidt}]{padmanabhan1997}
-	\bibinfo{author}{A.~Padmanabhan}, \bibinfo{author}{M.~Sheplak},
-	\bibinfo{author}{K.~S. Breuer}, \bibinfo{author}{M.~A. Schmidt},
-	\bibinfo{title}{Micromachined sensors for static and dynamic shear-stress
-		measurements in aerodynamic flows}, in: \bibinfo{booktitle}{Transducers '97},
-	\bibinfo{organization}{IEEE}, \bibinfo{pages}{137--140},
-	\bibinfo{year}{1997}.
-	
-	\bibitem[{Wietrzak and Lueptow(1994)}]{wietrzak1994wall}
-	\bibinfo{author}{A.~Wietrzak}, \bibinfo{author}{R.~M. Lueptow},
-	\bibinfo{title}{Wall shear stress and velocity in a turbulent axisymmetric
-		boundary layer}, \bibinfo{journal}{J.~Fluid Mech.} \bibinfo{volume}{259}
-	(\bibinfo{year}{1994}) \bibinfo{pages}{191--218}.
-	
-	\bibitem[{Sheplak et~al.(2004)Sheplak, Cattafesta, Nishida, and
-		McGinley}]{sheplak2004mems}
-	\bibinfo{author}{M.~Sheplak}, \bibinfo{author}{L.~Cattafesta},
-	\bibinfo{author}{T.~Nishida}, \bibinfo{author}{C.~McGinley},
-	\bibinfo{title}{MEMS shear stress sensors: promise and progress}, in:
-	\bibinfo{booktitle}{24th AIAA Aerodynamic Measurement Technology and Ground
-		Testing Conference}, \bibinfo{pages}{2606}, \bibinfo{year}{2004}.
-	
-	\bibitem[{He et~al.(2011)He, Ariyaratne, and Vardy}]{he2011wall}
-	\bibinfo{author}{S.~He}, \bibinfo{author}{C.~Ariyaratne},
-	\bibinfo{author}{A.~E. Vardy}, \bibinfo{title}{Wall shear stress in
-		accelerating turbulent pipe flow}, \bibinfo{journal}{J.~Fluid Mech.}
-	\bibinfo{volume}{685} (\bibinfo{year}{2011}) \bibinfo{pages}{440--460}.
-	
-	\bibitem[{Bruun(1995)}]{bruun1995hot}
-	\bibinfo{author}{H.~H. Bruun}, \bibinfo{title}{Hot-wire anemometry-principles
-		and signal analysis}, \bibinfo{publisher}{Oxford science publications},
-	\bibinfo{year}{1995}.
-	
-	\bibitem[{Phares et~al.(2000)Phares, Smedley, and Flagan}]{phares2000wall}
-	\bibinfo{author}{D.~J. Phares}, \bibinfo{author}{G.~T. Smedley},
-	\bibinfo{author}{R.~C. Flagan}, \bibinfo{title}{The wall shear stress
-		produced by the normal impingement of a jet on a flat surface},
-	\bibinfo{journal}{J.~Fluid Mech.} \bibinfo{volume}{418}
-	(\bibinfo{year}{2000}) \bibinfo{pages}{351--375}.
-	
-	\bibitem[{Rehimi et~al.(2006)Rehimi, Aloui, Nasrallah, Doubliez, and
-		Legrand}]{rehimi2006inverse}
-	\bibinfo{author}{F.~Rehimi}, \bibinfo{author}{F.~Aloui}, \bibinfo{author}{S.~B.
-		Nasrallah}, \bibinfo{author}{L.~Doubliez}, \bibinfo{author}{J.~Legrand},
-	\bibinfo{title}{Inverse method for electrodiffusional diagnostics of flows},
-	\bibinfo{journal}{Int. J.~Heat Mass Transfer}
-	\bibinfo{volume}{49}~(\bibinfo{number}{7}) (\bibinfo{year}{2006})
-	\bibinfo{pages}{1242--1254}.
-	
-	\bibitem[{Hanratty and Campbell(1996)}]{hanr1996meas}
-	\bibinfo{author}{T.~J. Hanratty}, \bibinfo{author}{J.~A. Campbell},
-	\bibinfo{title}{Measurement of wall shear stress}, in:
-	\bibinfo{editor}{R.~Goldstein} (Ed.), \bibinfo{booktitle}{Fluid mechanics
-		measurements (2nd edition)}, \bibinfo{publisher}{Taylor \& Francis},
-	\bibinfo{pages}{575--648}, \bibinfo{year}{1996}.
-	
-	\bibitem[{Bard and Faulkner(2001)}]{bard2001electrochemical}
-	\bibinfo{author}{A.~J. Bard}, \bibinfo{author}{L.~R. Faulkner},
-	\bibinfo{title}{Electrochemical methods: fundamentals and applications},
-	\bibinfo{publisher}{Wiley}, \bibinfo{edition}{2} edn., \bibinfo{year}{2001}.
-	
-	\bibitem[{Reiss and Hanratty(1963)}]{reiss1963expe}
-	\bibinfo{author}{L.~P. Reiss}, \bibinfo{author}{T.~J. Hanratty},
-	\bibinfo{title}{An experimental study of the unsteady nature of the viscous
-		sublayer}, \bibinfo{journal}{AlChE J.}
-	\bibinfo{volume}{9}~(\bibinfo{number}{2}) (\bibinfo{year}{1963})
-	\bibinfo{pages}{154--160}.
-	
-	\bibitem[{Mitchell and Hanratty(1966)}]{mitc1966stud}
-	\bibinfo{author}{J.~E. Mitchell}, \bibinfo{author}{T.~J. Hanratty},
-	\bibinfo{title}{A study of turbulence at a wall using an electrochemical wall
-		shear-stress meter}, \bibinfo{journal}{J.~Fluid Mech.}
-	\bibinfo{volume}{26}~(\bibinfo{number}{1}) (\bibinfo{year}{1966})
-	\bibinfo{pages}{199--221}.
-	
-	\bibitem[{Fortuna and Hanratty(1971)}]{fort1971freq}
-	\bibinfo{author}{G.~Fortuna}, \bibinfo{author}{T.~J. Hanratty},
-	\bibinfo{title}{Frequency response of the boundary layer on wall transfer
-		probes}, \bibinfo{journal}{Int. J.~Heat Mass Transfer}
-	\bibinfo{volume}{14}~(\bibinfo{number}{9}) (\bibinfo{year}{1971})
-	\bibinfo{pages}{1499--1507}.
-	
-	\bibitem[{Mao and Hanratty(1985)}]{mao1985use}
-	\bibinfo{author}{Z.-X. Mao}, \bibinfo{author}{T.~J. Hanratty},
-	\bibinfo{title}{The use of scalar transport probes to measure wall shear
-		stress in a flow with imposed oscillations}, \bibinfo{journal}{Exp. Fluids}
-	\bibinfo{volume}{3}~(\bibinfo{number}{3}) (\bibinfo{year}{1985})
-	\bibinfo{pages}{129--135}.
-	
-	\bibitem[{Deslouis et~al.(1990)Deslouis, Gil, and Tribollet}]{desl1990freq}
-	\bibinfo{author}{C.~Deslouis}, \bibinfo{author}{O.~Gil},
-	\bibinfo{author}{B.~Tribollet}, \bibinfo{title}{Frequency response of
-		electrochemical sensors to hydrodynamic fluctuations},
-	\bibinfo{journal}{J.~Fluid Mech.} \bibinfo{volume}{215}
-	(\bibinfo{year}{1990}) \bibinfo{pages}{85--100}.
-	
-	\bibitem[{Sobol{\'\i}k et~al.(1987)Sobol{\'\i}k, Wein, and
-		{\v{C}}erm{\'a}k}]{sobolik1987simultaneous}
-	\bibinfo{author}{V.~Sobol{\'\i}k}, \bibinfo{author}{O.~Wein},
-	\bibinfo{author}{J.~{\v{C}}erm{\'a}k}, \bibinfo{title}{Simultaneous
-		measurement of film thickness and wall shear stress in wavy flow of
-		non-Newtonian liquids}, \bibinfo{journal}{Collect. Czech. Chem. Commun.}
-	\bibinfo{volume}{52}~(\bibinfo{number}{4}) (\bibinfo{year}{1987})
-	\bibinfo{pages}{913--928}.
-	
-	\bibitem[{Wang and Tarbell(1993)}]{wang1993approximate}
-	\bibinfo{author}{D.~M. Wang}, \bibinfo{author}{J.~M. Tarbell},
-	\bibinfo{title}{An approximate solution for the dynamic response of wall
-		transfer probes}, \bibinfo{journal}{Int. J.~Heat Mass Transfer}
-	\bibinfo{volume}{36}~(\bibinfo{number}{18}) (\bibinfo{year}{1993})
-	\bibinfo{pages}{4341--4349}.
-	
-	\bibitem[{Pedley(1976)}]{pedley1976heat}
-	\bibinfo{author}{T.~J. Pedley}, \bibinfo{title}{Heat transfer from a hot film
-		in reversing shear flow}, \bibinfo{journal}{J.~Fluid Mech.}
-	\bibinfo{volume}{78}~(\bibinfo{number}{3}) (\bibinfo{year}{1976})
-	\bibinfo{pages}{513--534}.
-	
-	\bibitem[{Menendez and Ramaprian(1985)}]{menendez1985use}
-	\bibinfo{author}{A.~N. Menendez}, \bibinfo{author}{B.~R. Ramaprian},
-	\bibinfo{title}{The use of flush-mounted hot-film gauges to measure skin
-		friction in unsteady boundary layers}, \bibinfo{journal}{J.~Fluid Mech.}
-	\bibinfo{volume}{161} (\bibinfo{year}{1985}) \bibinfo{pages}{139--159}.
-	
-	\bibitem[{Son and Hanratty(1969)}]{son1969velo}
-	\bibinfo{author}{J.~S. Son}, \bibinfo{author}{T.~J. Hanratty},
-	\bibinfo{title}{Velocity gradients at the wall for flow around a cylinder at
-		Reynolds numbers from $5\times10^3$ to $10^5$}, \bibinfo{journal}{J.~Fluid
-		Mech.} \bibinfo{volume}{35}~(\bibinfo{number}{2}) (\bibinfo{year}{1969})
-	\bibinfo{pages}{353--368}.
-	
-	\bibitem[{Sirkar and Hanratty(1970)}]{sirk1970limi}
-	\bibinfo{author}{K.~K. Sirkar}, \bibinfo{author}{T.~J. Hanratty},
-	\bibinfo{title}{The limiting behaviour of the turbulent transverse velocity
-		component close to a wall}, \bibinfo{journal}{J.~Fluid Mech.}
-	\bibinfo{volume}{44}~(\bibinfo{number}{3}) (\bibinfo{year}{1970})
-	\bibinfo{pages}{605--614}.
-	
-	\bibitem[{Tournier and Py(1978)}]{tour1978beha}
-	\bibinfo{author}{C.~Tournier}, \bibinfo{author}{B.~Py}, \bibinfo{title}{The
-		behaviour of naturally oscillating three-dimensional flow around a cylinder},
-	\bibinfo{journal}{J.~Fluid Mech.} \bibinfo{volume}{85}~(\bibinfo{number}{1})
-	(\bibinfo{year}{1978}) \bibinfo{pages}{161--186}.
-	
-	\bibitem[{Deslouis et~al.(2004)Deslouis, Tribollet, and Tihon}]{desl2004near}
-	\bibinfo{author}{C.~Deslouis}, \bibinfo{author}{B.~Tribollet},
-	\bibinfo{author}{J.~Tihon}, \bibinfo{title}{Near-wall turbulence in drag
-		reducing flows investigated by the photolithography-electrochemical probes},
-	\bibinfo{journal}{J. Non-Newtonian Fluid. Mech.}
-	\bibinfo{volume}{123}~(\bibinfo{number}{2}) (\bibinfo{year}{2004})
-	\bibinfo{pages}{141--150}.
-	
-	\bibitem[{Wein and Sobol{\'\i}k(1987)}]{wein1987theory}
-	\bibinfo{author}{O.~Wein}, \bibinfo{author}{V.~Sobol{\'\i}k},
-	\bibinfo{title}{Theory of direction sensitive probes for electrodiffusion
-		measurement of wall velocity gradients}, \bibinfo{journal}{Collect. Czech.
-		Chem. Commun.} \bibinfo{volume}{52}~(\bibinfo{number}{9})
-	(\bibinfo{year}{1987}) \bibinfo{pages}{2169--2180}.
-	
-	\bibitem[{Sobol{\'\i}k et~al.(1990)Sobol{\'\i}k, Wein, Gil, and
-		Tribollet}]{sobolik1990three}
-	\bibinfo{author}{V.~Sobol{\'\i}k}, \bibinfo{author}{O.~Wein},
-	\bibinfo{author}{O.~Gil}, \bibinfo{author}{B.~Tribollet},
-	\bibinfo{title}{Three-segment electrodiffusion probes for measuring velocity
-		fields close to a wall}, \bibinfo{journal}{Exp. Fluids}
-	\bibinfo{volume}{9}~(\bibinfo{number}{1}) (\bibinfo{year}{1990})
-	\bibinfo{pages}{43--48}.
-	
-	\bibitem[{Mao and Hanratty(1992)}]{mao1992measurement}
-	\bibinfo{author}{Z.-X. Mao}, \bibinfo{author}{T.~J. Hanratty},
-	\bibinfo{title}{Measurement of wall shear rate in large amplitude unsteady
-		reversing flows}, \bibinfo{journal}{Exp. Fluids}
-	\bibinfo{volume}{12}~(\bibinfo{number}{4}) (\bibinfo{year}{1992})
-	\bibinfo{pages}{342--350}.
-	
-	\bibitem[{Labraga et~al.(2002)Labraga, Bourabaa, and Berkah}]{labraga2002wall}
-	\bibinfo{author}{L.~Labraga}, \bibinfo{author}{N.~Bourabaa},
-	\bibinfo{author}{T.~Berkah}, \bibinfo{title}{Wall shear stress from a
-		rotating cylinder in cross flow using the electrochemical technique},
-	\bibinfo{journal}{Exp. Fluids} \bibinfo{volume}{33}~(\bibinfo{number}{3})
-	(\bibinfo{year}{2002}) \bibinfo{pages}{488--496}.
-	
-	\bibitem[{Hecht(2012)}]{MR3043640}
-	\bibinfo{author}{F.~Hecht}, \bibinfo{title}{New development in FreeFem++},
-	\bibinfo{journal}{J. Numer. Math.}
-	\bibinfo{volume}{20}~(\bibinfo{number}{3-4}) (\bibinfo{year}{2012})
-	\bibinfo{pages}{251--265}, ISSN \bibinfo{issn}{1570-2820}.
-	
-	\bibitem[{Ozisik(2000)}]{ozisik2000inverse}
-	\bibinfo{author}{M.~N. Ozisik}, \bibinfo{title}{Inverse heat transfer:
-		fundamentals and applications}, \bibinfo{publisher}{CRC Press},
-	\bibinfo{year}{2000}.
-	
-	\bibitem[{Shenefelt et~al.(2002)Shenefelt, Luck, Taylor, and
-		Berry}]{shen2002solu}
-	\bibinfo{author}{J.~R. Shenefelt}, \bibinfo{author}{R.~Luck},
-	\bibinfo{author}{R.~P. Taylor}, \bibinfo{author}{J.~T. Berry},
-	\bibinfo{title}{Solution to inverse heat conduction problems employing
-		singular value decomposition and model-reduction}, \bibinfo{journal}{Int.
-		J.~Heat Mass Transfer} \bibinfo{volume}{45}~(\bibinfo{number}{1})
-	(\bibinfo{year}{2002}) \bibinfo{pages}{67--74}.
-	
-	\bibitem[{Beck and Woodbury(2016)}]{beck2016inve}
-	\bibinfo{author}{J.~V. Beck}, \bibinfo{author}{K.~A. Woodbury},
-	\bibinfo{title}{Inverse heat conduction problem: Sensitivity coefficient
-		insights, filter coefficients, and intrinsic verification},
-	\bibinfo{journal}{Int. J.~Heat Mass Transfer} \bibinfo{volume}{97}
-	(\bibinfo{year}{2016}) \bibinfo{pages}{578--588}.
-	
-	\bibitem[{Press et~al.(2007)Press, Teukolsky, Vetterling, and
-		Flannery}]{press2007numerical}
-	\bibinfo{author}{W.~H. Press}, \bibinfo{author}{S.~A. Teukolsky},
-	\bibinfo{author}{W.~T. Vetterling}, \bibinfo{author}{B.~P. Flannery},
-	\bibinfo{title}{Numerical Recipes 3rd Edition: The Art of Scientific
-		Computing}, \bibinfo{publisher}{Cambridge University Press},
-	\bibinfo{year}{2007}.
-	
-	\bibitem[{Mao and Hanratty(1991)}]{mao1991analysis}
-	\bibinfo{author}{Z.-X. Mao}, \bibinfo{author}{T.~J. Hanratty},
-	\bibinfo{title}{Analysis of wall shear stress probes in large amplitude
-		unsteady flows}, \bibinfo{journal}{Int. J.~Heat Mass Transfer}
-	\bibinfo{volume}{34}~(\bibinfo{number}{1}) (\bibinfo{year}{1991})
-	\bibinfo{pages}{281--290}.
-	
-	\bibitem[{Maquinghen(1999)}]{maquin99}
-	\bibinfo{author}{T.~Maquinghen}, \bibinfo{title}{M{\'e}trologie
-		tridimensionnelle instationnaire {\`a} l'aide de la m{\'e}thode
-		polarographique}, Ph.D. thesis, \bibinfo{school}{Valenciennes},
-	\bibinfo{year}{1999}.
-	
-	\bibitem[{Kaiping(1983)}]{kaip1983unst}
-	\bibinfo{author}{P.~Kaiping}, \bibinfo{title}{Unsteady forced convective heat
-		transfer from a hot film in non-reversing and reversing shear flow},
-	\bibinfo{journal}{Int. J.~Heat Mass Transfer}
-	\bibinfo{volume}{26}~(\bibinfo{number}{4}) (\bibinfo{year}{1983})
-	\bibinfo{pages}{545--557}.
-	
-	\bibitem[{Laizet and Lamballais(2009)}]{incompact3d-0}
-	\bibinfo{author}{S.~Laizet}, \bibinfo{author}{E.~Lamballais},
-	\bibinfo{title}{High-order compact schemes for incompressible flows: a simple
-		and efficient method with the quasi-spectral accuracy},
-	\bibinfo{journal}{J.~Comput. Phys.}
-	\bibinfo{volume}{228}~(\bibinfo{number}{16}) (\bibinfo{year}{2009})
-	\bibinfo{pages}{5989--6015}.
-	
-	\bibitem[{Sobol{\'\i}k et~al.(1998)Sobol{\'\i}k, Tihon, Wein, and
-		Wichterle}]{sobolik1998calibration}
-	\bibinfo{author}{V.~Sobol{\'\i}k}, \bibinfo{author}{J.~Tihon},
-	\bibinfo{author}{O.~Wein}, \bibinfo{author}{K.~Wichterle},
-	\bibinfo{title}{Calibration of electrodiffusion friction probes using a
-		voltage-step transient}, \bibinfo{journal}{J.~Appl. Electrochem.}
-	\bibinfo{volume}{28}~(\bibinfo{number}{3}) (\bibinfo{year}{1998})
-	\bibinfo{pages}{329--335}.
-\end{thebibliography}
+\bibliography{../biblio/biblio}
+\bibliographystyle{elsarticle-num-names}
 \end{document}
 \endinput
